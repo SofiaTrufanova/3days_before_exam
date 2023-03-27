@@ -1,0 +1,2 @@
+# Module file: luck.py
+
