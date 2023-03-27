@@ -1,5 +1,4 @@
 import random
-import luck
 
 lucky_list = [{'easy': 0, 'middle': 3, 'hard': 3},
               {'easy': 1, 'middle': 2, 'hard': 3},
