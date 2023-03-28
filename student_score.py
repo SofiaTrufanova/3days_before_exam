@@ -24,6 +24,7 @@ class Student:
     summary_knowledge = 0
     overworking = 0
     count_of_bot = 0
+    result = 0
 
     def work_or_chill_decision(self):
         '''

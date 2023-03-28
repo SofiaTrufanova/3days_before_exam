@@ -1,6 +1,16 @@
 import random
 
 
+def one_half(first, second):
+    '''
+    Вероятность выбора - 1/2
+    '''
+    r = random.randrange(1, 3)
+    if r == 1:
+        return first
+    return second
+
+
 def type_of_something(fatigue):
     '''
     С заданной вероятностью выбираем один из трёх объектов

@@ -18,6 +18,7 @@ student.prepare_for_exam()
 # Студент тянет билет
 ticket_type = result_functions.type_of_something(student.fatigue)
 exam_type = result_functions.type_of_something(student.fatigue)
+student.result = result_functions.result(exam_type, ticket_type, student.knowledge)
 
 # Получаем результат экзамена
 print('Ваша оценка:', result_functions.result(exam_type, ticket_type, student.knowledge))
