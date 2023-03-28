@@ -6,11 +6,11 @@ student = student_score.Student()
 
 # Пока что это краткое описание 3-х дней студента
 for day in range(1, 4):
-    student.work_or_chill_decision(day)
+    student.work_or_chill_decision()
     student.luck_decision(day * 2 - 1)
-    student.work_or_chill_decision(day)
+    student.work_or_chill_decision()
     student.luck_decision(day * 2)
-    student.work_or_chill_decision(day)
+    student.work_or_chill_decision()
 
 # День перед экзаменом
 student.prepare_for_exam()

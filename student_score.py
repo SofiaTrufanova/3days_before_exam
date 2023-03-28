@@ -15,13 +15,17 @@ lucky_list = [{'easy': 0, 'middle': 3, 'hard': 3},
 
 
 class Student:
+    '''
+    Студент (игрок)
+    '''
     luck = 0
     fatigue = {'easy': 0, 'middle': 0, 'hard': 0}
     knowledge = {'easy': 0, 'middle': 0, 'hard': 0}
     summary_knowledge = 0
+    overworking = 0
     count_of_bot = 0
 
-    def work_or_chill_decision(self, number_of_day):
+    def work_or_chill_decision(self):
         '''
         Эта функция реализует систему занятий с учётом усталости:
         - продуктивно заниматься можно лишь два раза в день - иначе штраф*
@@ -30,12 +34,11 @@ class Student:
         x = input('work or chill?\n')
         if x == 'work':
             self.count_of_bot += 1
-            number_of_day += 1
             if self.count_of_bot > 2:
-                self.summary_knowledge -= number_of_day * 2
+                self.overworking += 1
                 self.count_of_bot = 0
             else:
-                self.summary_knowledge += 6
+                self.summary_knowledge += 1
 
     def luck_decision(self, number_of_situation):
         '''
@@ -58,16 +61,43 @@ class Student:
         if number_of_situation == 6:
             if x == 'first': self.luck += 2
 
+    def penalty(self):
+        '''
+        Добавляет штраф
+        '''
+        if self.overworking < self.knowledge['hard']:
+            self.knowledge['hard'] -= self.overworking
+            if self.overworking < self.knowledge['middle']:
+                self.knowledge['middle'] -= self.overworking
+            else:
+                self.knowledge['easy'] = max(0, self.knowledge['easy'] - self.overworking + self.knowledge['middle'])
+                self.knowledge['middle'] = 0
+        else:
+            new_overworking = self.overworking - self.knowledge['hard']
+            self.knowledge['hard'] = 0
+            if self.overworking + new_overworking < self.knowledge['middle']:
+                self.knowledge['middle'] -= self.overworking + new_overworking
+            else:
+                self.knowledge['easy'] = max(0, self.knowledge['easy'] - self.overworking + self.knowledge[
+                    'middle'] - new_overworking)
+                self.knowledge['middle'] = 0
+
     def summary_preparation(self):
         '''
-        Распределяет знания студента по билетам* (будет измененно позднее)
+        Распределяет знания студента по билетам и добавляет штраф
         '''
-        self.knowledge['easy'] = min(self.summary_knowledge, 12)
-        if self.summary_knowledge >= 12:
-            self.summary_knowledge = self.summary_knowledge - 12
-            self.knowledge['middle'] = min(self.summary_knowledge, 12)
-        if self.summary_knowledge >= 12:
-            self.summary_knowledge = self.summary_knowledge - 12
+        self.knowledge['easy'] = min(12, self.summary_knowledge * 3)
+        if self.summary_knowledge <= 4:
+            self.knowledge['middle'] = self.summary_knowledge * 2
+        else:
+            self.knowledge['middle'] = 12
+        if self.summary_knowledge <= 4:
+            self.knowledge['hard'] = self.summary_knowledge
+        elif self.summary_knowledge == 5:
+            self.knowledge['hard'] = 6
+        else:
+            self.knowledge['hard'] = 12
+        self.penalty()
 
     def luck_result(self):
         '''
