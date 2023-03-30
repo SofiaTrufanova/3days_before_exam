@@ -21,6 +21,7 @@ def final():
 
 def next_click():
     global click_index, lucky_index, study_index, day
+    print('click_index', click_index, 'luck', lucky_index, 'study', study_index,'day', day)
     next_button.grid_remove()
     main_text.configure(text=text.main_text[click_index])
     click_index += 1
@@ -36,8 +37,8 @@ def next_click():
             first_study_button.grid(column=0, row=4)
             second_study_button.grid(column=4, row=4)
         elif study_index % 3 == 0:
-            day += 1
             label_text.configure(text=text.key_situations[day])
+            day += 1
             first_study_button.grid(column=0, row=4)
             second_study_button.grid(column=4, row=4)
         else:
@@ -47,6 +48,7 @@ def next_click():
 
 def first_study_click():
     global study_index, is_luck, click_index
+    print('click_index', click_index, 'study', study_index)
     main_text.configure(text=text.study_choices[study_index * 2])
     is_luck = False
     study_index += 1
@@ -59,8 +61,8 @@ def first_study_click():
 
 def second_study_click():
     global study_index, is_luck, click_index
+    print('click', click_index, 'study', study_index)
     main_text.configure(text=text.study_choices[study_index * 2 + 1])
-    click_index += 1
     is_luck = False
     study_index += 1
     next_button.grid(column=2, row=4)
@@ -72,8 +74,8 @@ def second_study_click():
 
 def first_lucky_click():
     global lucky_index, is_luck, click_index
-    main_text.configure(text=text.lucky_choices[study_index * 2])
-    click_index += 1
+    print('click', click_index, 'luck', lucky_index)
+    main_text.configure(text=text.lucky_choices[lucky_index * 2])
     is_luck = True
     lucky_index += 1
     next_button.grid(column=2, row=4)
@@ -85,8 +87,8 @@ def first_lucky_click():
 
 def second_lucky_click():
     global lucky_index, is_luck, click_index
-    main_text.configure(text=text.lucky_choices[study_index * 2 + 1])
-    click_index += 1
+    print('click', click_index, 'luck', lucky_index)
+    main_text.configure(text=text.lucky_choices[lucky_index * 2 + 1])
     is_luck = True
     lucky_index += 1
     next_button.grid(column=2, row=4)
