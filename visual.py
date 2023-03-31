@@ -25,7 +25,7 @@ def next_click():
     next_button.grid_remove()
     main_text.configure(text=text.main_text[click_index])
     click_index += 1
-    if click_index >= 15:
+    if click_index >= 16:
         first_study_button.grid_remove()
         second_study_button.grid_remove()
         first_lucky_button.grid_remove()
