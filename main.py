@@ -53,7 +53,7 @@ def next_click():
 def first_study_click():
     global study_index, is_luck, click_index, no_power
     is_luck = False
-    if student.work_or_chill_decision('first') == 1:
+    if student.work_or_chill_decision('first', study_index) == 1:
         main_text.configure(text=text.study_choices[study_index * 2])
     else:
         main_text.configure(text=text.study_choices_without_power[no_power])

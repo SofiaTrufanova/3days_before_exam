@@ -28,7 +28,7 @@ class Student:
     count_of_bot = 0
     result = 0
 
-    def work_or_chill_decision(self, choice):
+    def work_or_chill_decision(self, choice, index):
         '''
         Эта функция реализует систему занятий с учётом усталости:
         - продуктивно заниматься можно лишь два раза в день - иначе штраф.
@@ -36,6 +36,8 @@ class Student:
         и 2 - если он переутомился
         '''
         work = 0
+        if index % 3 == 0:
+            self.count_of_bot = 0
         if choice == 'first':
             self.count_of_bot += 1
             if self.count_of_bot > 2:
