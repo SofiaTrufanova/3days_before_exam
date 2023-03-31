@@ -81,7 +81,6 @@ def second_study_click():
 
 def first_lucky_click():
     global lucky_index, is_luck, click_index
-    print(lucky_index)
     if student.luck_decision(lucky_index + 1, 'first'):
         main_text.configure(text=text.lucky_choices[lucky_index * 2])
     else:
@@ -97,7 +96,6 @@ def first_lucky_click():
 
 def second_lucky_click():
     global lucky_index, is_luck, click_index
-    print(lucky_index)
     if student.luck_decision(lucky_index + 1, 'second'):
         main_text.configure(text=text.lucky_choices[lucky_index * 2])
     else:
