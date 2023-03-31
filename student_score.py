@@ -1,6 +1,7 @@
 import result_functions
 
-lucky_list = [{'easy': 0, 'middle': 3, 'hard': 3},
+lucky_list = [{'easy': 0, 'middle': 2, 'hard': 4},
+              {'easy': 0, 'middle': 3, 'hard': 3},
               {'easy': 1, 'middle': 2, 'hard': 3},
               {'easy': 1, 'middle': 3, 'hard': 2},
               {'easy': 2, 'middle': 2, 'hard': 2},

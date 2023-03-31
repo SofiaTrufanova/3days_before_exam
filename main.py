@@ -1,6 +1,7 @@
 from tkinter import *
 import text
 import student_score
+import result_functions
 
 click_index = 0
 lucky_index = 0
@@ -8,23 +9,48 @@ study_index = 0
 day = 0
 no_power = 0
 is_luck = False
+ticket_type = 0
+exam_type = 0
 
 student = student_score.Student()
 
 
 def final():
-    global click_index
+    global click_index, ticket_type, exam_type
     label_text.configure(text=text.key_situations[-1])
-    main_text.configure(text=text.main_text[click_index])
+    if click_index == 16:
+        if ticket_type == 'easy':
+            main_text.configure(text='Вы тянете лёгкий билет!')
+        elif ticket_type == 'middle':
+            main_text.configure(text='Вы тянете обычный билет.')
+        else:
+            main_text.configure(text='Вы тянете сложный билет... Это формула Грина.')
+    if click_index == 17:
+        if exam_type == 'easy':
+            main_text.configure(
+                text='Вы сели его расписывать, и тут экзаменатор называет ваше имя. Вы оборачиваетесь и смотрите на экзаменатора:'
+                     ' он выглядит добрым)')
+        elif exam_type == 'middle':
+            main_text.configure(
+                text='Вы сели его расписывать, и тут экзаменатор называет ваше имя. Вы оборачиваетесь и смотрите на экзаменатора:'
+                     'он выглядит как среднестатистический экзаменатор.')
+        else:
+            main_text.configure(
+                text='Вы сели его расписывать, и тут экзаменатор называет ваше имя. Вы оборачиваетесь и смотрите на экзаменатора:'
+                     ' это Иванова...')
+    if click_index == 18:
+        main_text.configure(
+            text='В итоге Вы рассказываете свой билет экзаменатору. Он задаёт вам вопросы и в итоге отпускает вас...')
     click_index += 1
     if click_index == 19:
-        label_text.configure(text='Конец игры.')
+        final_result = max(2, min(student.result, 10))
+        label_text.configure(text=text.result_text[final_result - 2])
         main_text.grid_remove()
         next_button.grid_remove()
 
 
 def next_click():
-    global click_index, lucky_index, study_index, day
+    global click_index, lucky_index, study_index, day, ticket_type, exam_type
     next_button.grid_remove()
     main_text.configure(text=text.main_text[click_index])
     click_index += 1
@@ -33,9 +59,12 @@ def next_click():
         second_study_button.grid_remove()
         first_lucky_button.grid_remove()
         second_lucky_button.grid_remove()
+        student.prepare_for_exam()
+        ticket_type = result_functions.type_of_something(student.fatigue)
+        exam_type = result_functions.type_of_something(student.fatigue)
+        student.result = result_functions.result(exam_type, ticket_type, student.knowledge)
         next_button.configure(command=final)
         next_button.grid()
-        student.prepare_for_exam()
     else:
         if is_luck:
             first_study_button.grid(column=0, row=4)
@@ -71,7 +100,7 @@ def second_study_click():
     main_text.configure(text=text.study_choices[study_index * 2 + 1])
     is_luck = False
     study_index += 1
-    student.work_or_chill_decision('second')
+    student.work_or_chill_decision('second', study_index)
     next_button.grid(column=2, row=4)
     first_study_button.configure(text=text.first_study_button[study_index])
     second_study_button.configure(text=text.second_study_button[study_index])
