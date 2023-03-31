@@ -1,14 +1,14 @@
 import random
 
 
-def one_half(first, second):
+def one_half():
     '''
     Вероятность выбора - 1/2
     '''
     r = random.randrange(1, 3)
     if r == 1:
-        return first
-    return second
+        return 1
+    return 0
 
 
 def type_of_something(fatigue):

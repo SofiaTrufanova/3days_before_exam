@@ -31,20 +31,26 @@ class Student:
     def work_or_chill_decision(self, choice):
         '''
         Эта функция реализует систему занятий с учётом усталости:
-        - продуктивно заниматься можно лишь два раза в день - иначе штраф*
-        (будет измененно)
+        - продуктивно заниматься можно лишь два раза в день - иначе штраф.
+        При этом возращается 0, если студент не занимался, 1 - если позанимался хорошо
+        и 2 - если он переутомился
         '''
+        work = 0
         if choice == 'first':
             self.count_of_bot += 1
             if self.count_of_bot > 2:
                 self.overworking += 1
                 self.count_of_bot = 0
+                work = 2
             else:
                 self.summary_knowledge += 1
+                work = 1
+        return work
 
     def luck_decision(self, number_of_situation, choice):
         '''
-        Данная функция учитывает влияние некой ситуации на общую удачливость студента
+        Данная функция учитывает влияние некой ситуации на общую удачливость студента.
+        Возвращает True, если студенту повезло, иначе - False.
         '''
         is_it_luck = True
         if number_of_situation == 1:  # рандом
