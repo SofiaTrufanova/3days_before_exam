@@ -1,3 +1,5 @@
+import result_functions
+
 lucky_list = [{'easy': 0, 'middle': 3, 'hard': 3},
               {'easy': 1, 'middle': 2, 'hard': 3},
               {'easy': 1, 'middle': 3, 'hard': 2},
@@ -26,14 +28,13 @@ class Student:
     count_of_bot = 0
     result = 0
 
-    def work_or_chill_decision(self):
+    def work_or_chill_decision(self, choice):
         '''
         Эта функция реализует систему занятий с учётом усталости:
         - продуктивно заниматься можно лишь два раза в день - иначе штраф*
         (будет измененно)
         '''
-        x = input('work or chill?\n')
-        if x == 'work':
+        if choice == 'first':
             self.count_of_bot += 1
             if self.count_of_bot > 2:
                 self.overworking += 1
@@ -41,26 +42,45 @@ class Student:
             else:
                 self.summary_knowledge += 1
 
-    def luck_decision(self, number_of_situation):
+    def luck_decision(self, number_of_situation, choice):
         '''
         Данная функция учитывает влияние некой ситуации на общую удачливость студента
         '''
-        x = input("first or second?\n")
-        if number_of_situation == 1:
-            if x == 'first':
+        is_it_luck = True
+        if number_of_situation == 1:  # рандом
+            if result_functions.one_half():
+                self.luck += 1
+            else:
+                is_it_luck = False
+        if number_of_situation == 2:  # детерминированная удача (1 выбор лучше)
+            if choice == 'first':
                 self.luck += 1
             else:
                 self.luck -= 1
-        if number_of_situation == 2:
-            if x == 'second': self.luck += 1
-        if number_of_situation == 3:
-            if x == 'second': self.luck += 2
-        if number_of_situation == 4:
-            if x == 'first': self.luck -= 1
-        if number_of_situation == 5:
-            if x == 'second': self.luck -= 1
-        if number_of_situation == 6:
-            if x == 'first': self.luck += 2
+                is_it_luck = False
+        if number_of_situation == 3:  # рандом
+            if result_functions.one_half():
+                self.luck += 1
+            else:
+                self.luck -= 1
+                is_it_luck = False
+        if number_of_situation == 4:  # рандом
+            if result_functions.one_half():
+                self.luck += 1
+            else:
+                is_it_luck = False
+        if number_of_situation == 5:  # рандом
+            if result_functions.one_half():
+                self.luck += 1
+            else:
+                self.luck -= 1
+                is_it_luck = False
+        if number_of_situation == 6:  # детерминированная удача (1 выбор лучше)
+            if choice == 'first':
+                self.luck += 2
+            else:
+                is_it_luck = False
+        return is_it_luck
 
     def penalty(self):
         '''
