@@ -15,7 +15,7 @@ exam_type = 0
 student = student_score.Student()
 
 
-def final():
+def final(event):
     global click_index, ticket_type, exam_type
     label_text.configure(text=text.key_situations[-1])
     if click_index == 16:
@@ -46,12 +46,16 @@ def final():
         final_result = max(2, min(student.result, 10))
         label_text.configure(text=text.result_text[final_result - 2])
         main_text.grid_remove()
-        next_button.grid_remove()
+        window.bind("<Button-1>", do_nothing)
 
 
-def next_click():
+def do_nothing(event):
+    pass
+
+
+def next_click(event):
     global click_index, lucky_index, study_index, day, ticket_type, exam_type
-    next_button.grid_remove()
+    window.bind("<Button-1>", do_nothing)
     main_text.configure(text=text.main_text[click_index])
     click_index += 1
     if click_index >= 16:
@@ -63,8 +67,7 @@ def next_click():
         ticket_type = result_functions.type_of_something(student.fatigue)
         exam_type = result_functions.type_of_something(student.fatigue)
         student.result = result_functions.result(exam_type, ticket_type, student.knowledge)
-        next_button.configure(command=final)
-        next_button.grid()
+        window.bind("<Button-1>", final)
     else:
         if is_luck:
             first_study_button.grid(column=0, row=4)
@@ -88,11 +91,11 @@ def first_study_click():
         main_text.configure(text=text.study_choices_without_power[no_power])
         no_power += 1
     study_index += 1
-    next_button.grid(column=2, row=4)
     first_study_button.configure(text=text.first_study_button[study_index])
     second_study_button.configure(text=text.second_study_button[study_index])
     first_study_button.grid_remove()
     second_study_button.grid_remove()
+    window.bind("<Button-1>", next_click)
 
 
 def second_study_click():
@@ -101,11 +104,11 @@ def second_study_click():
     is_luck = False
     study_index += 1
     student.work_or_chill_decision('second', study_index)
-    next_button.grid(column=2, row=4)
     first_study_button.configure(text=text.first_study_button[study_index])
     second_study_button.configure(text=text.second_study_button[study_index])
     first_study_button.grid_remove()
     second_study_button.grid_remove()
+    window.bind("<Button-1>", next_click)
 
 
 def first_lucky_click():
@@ -116,11 +119,11 @@ def first_lucky_click():
         main_text.configure(text=text.lucky_choices[lucky_index * 2 + 1])
     is_luck = True
     lucky_index += 1
-    next_button.grid(column=2, row=4)
     first_lucky_button.configure(text=text.first_lucky_button[lucky_index])
     second_lucky_button.configure(text=text.second_lucky_button[lucky_index])
     first_lucky_button.grid_remove()
     second_lucky_button.grid_remove()
+    window.bind("<Button-1>", next_click)
 
 
 def second_lucky_click():
@@ -131,11 +134,11 @@ def second_lucky_click():
         main_text.configure(text=text.lucky_choices[lucky_index * 2 + 1])
     is_luck = True
     lucky_index += 1
-    next_button.grid(column=2, row=4)
     first_lucky_button.configure(text=text.first_lucky_button[lucky_index])
     second_lucky_button.configure(text=text.second_lucky_button[lucky_index])
     first_lucky_button.grid_remove()
     second_lucky_button.grid_remove()
+    window.bind("<Button-1>", next_click)
 
 
 window = Tk()
@@ -143,7 +146,7 @@ window.title('3 дня до экзамена...')
 window.geometry('650x500')
 label_text = Label(window, text='3 дня до экзамена...')
 main_text = Label(window, text='Начать игру:')
-next_button = Button(window, text='Дальше ->', command=next_click)
+window.bind("<Button-1>", next_click)
 first_study_button = Button(window, command=first_study_click, text=text.first_study_button[study_index])
 first_lucky_button = Button(window, command=first_lucky_click, text=text.first_lucky_button[lucky_index])
 second_study_button = Button(window, command=second_study_click, text=text.second_study_button[study_index])
@@ -155,5 +158,4 @@ first_study_button.grid(column=0, row=4)
 second_study_button.grid(column=4, row=4)
 first_study_button.grid_remove()
 second_study_button.grid_remove()
-next_button.grid(column=2, row=4)
 window.mainloop()
