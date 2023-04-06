@@ -1,5 +1,5 @@
 import visual
 
-Game = visual.GameWindow()
-
-Game.play()
+if __name__ == "__main__":
+    Game = visual.GameWindow()
+    Game.play()
