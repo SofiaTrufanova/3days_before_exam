@@ -2,7 +2,7 @@ import globals
 import hide_music_imports  # Он прячет вывод при подключении пакета с музыкой
 from pygame import mixer
 import result_functions
-from tkinter import Button, Label, Tk
+from tkinter import Button, Label, PhotoImage, Tk
 
 
 class GameWindow:
@@ -23,13 +23,20 @@ class GameWindow:
                                           text=globals.Global.second_study_text[globals.Global.study_index])
         self.second_lucky_button = Button(self.window, command=self.second_lucky_click,
                                           text=globals.Global.second_lucky_text[globals.Global.lucky_index])
-
+        self.bg = PhotoImage(file=globals.Global.path_of_pictures[globals.Global.number_of_picture])
+        self.place = Label(self.window, image=self.bg)
+        self.place.grid(column=0, row=6, columnspan=5)
         self.label_text.grid(column=2, row=0)
         self.main_text.grid(column=2, row=2)
         self.first_study_button.grid(column=0, row=4)
         self.second_study_button.grid(column=4, row=4)
         self.first_study_button.grid_remove()
         self.second_study_button.grid_remove()
+
+    def picture(self):
+        globals.Global.number_of_picture += 1
+        bg = PhotoImage(file=globals.Global.path_of_pictures[globals.Global.number_of_picture])
+        self.place.configure(image=bg)
 
     def ticket(self):
         """Выбор билета"""
@@ -101,6 +108,7 @@ class GameWindow:
         self.window.bind("<Button-1>", self.do_nothing)
         self.main_text.configure(text=globals.Global.main_text[globals.Global.click_index])
         globals.Global.click_index += 1
+        self.picture()
         if globals.Global.click_index >= globals.Global.SIXTEEN:
             self.ending()
         else:

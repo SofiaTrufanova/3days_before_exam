@@ -17,6 +17,7 @@ class Global:
     is_luck = False
     ticket_type = 0
     exam_type = 0
+    number_of_picture = 0
     lucky_list = [{'easy': 0, 'middle': 2, 'hard': 4},
                   {'easy': 0, 'middle': 3, 'hard': 3},
                   {'easy': 1, 'middle': 2, 'hard': 3},
@@ -32,6 +33,16 @@ class Global:
     Данный лист нужен для преобразования общей удачливости студента в конкретную вероятность
     (точнее, числитель данной вероятности) выпадения конкретного типа билета и экзаменатора
     '''
+
+    path_of_pictures = [
+        'pictures/Аудиторный корпус.png',
+        'pictures/Общага.png',
+        'pictures/КСП.png',
+        'pictures/Общага.png',
+        'pictures/Экзамен.png',
+        'pictures/Боталка.png'
+    ]
+
 
     lucky_choices = [
         "- О, сегодня мне повезло, конечно! Вы берёте компот и наслаждаетесь жизнью.",
