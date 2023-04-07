@@ -67,15 +67,15 @@ class GameWindow:
     def final(self, event):
         """Финальная часть игры"""
         self.label_text.configure(text=globals.Global.key_situations[-1])
-        if globals.Global.click_index == 16:
+        if globals.Global.click_index == globals.Global.SIXTEEN:
             self.ticket()
-        if globals.Global.click_index == 17:
+        if globals.Global.click_index == globals.Global.SEVENTEEN:
             self.examiner()
-        if globals.Global.click_index == 18:
+        if globals.Global.click_index == globals.Global.EIGHTEEN:
             self.before_ending()
         globals.Global.click_index += 1
-        if globals.Global.click_index == 19:
-            final_result = max(2, min(globals.Global.student.result, 10))
+        if globals.Global.click_index == globals.Global.NINETEEN:
+            final_result = max(2, min(globals.Global.student.result, globals.Global.TEN))
             self.label_text.configure(text=globals.Global.result_text[final_result - 2])
             self.main_text.grid_remove()
             self.window.bind("<Button-1>", self.do_nothing)
@@ -101,7 +101,7 @@ class GameWindow:
         self.window.bind("<Button-1>", self.do_nothing)
         self.main_text.configure(text=globals.Global.main_text[globals.Global.click_index])
         globals.Global.click_index += 1
-        if globals.Global.click_index >= 16:
+        if globals.Global.click_index >= globals.Global.SIXTEEN:
             self.ending()
         else:
             if globals.Global.is_luck:

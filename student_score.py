@@ -12,6 +12,12 @@ class Student:
     count_of_bot = 0
     result = 0
 
+    def is_student_lucky(self):
+        if result_functions.one_half():
+            self.luck += 1
+            return True
+        return False
+
     def work_or_chill_decision(self, choice, index):
         """
         Эта функция реализует систему занятий с учётом усталости:
@@ -34,35 +40,13 @@ class Student:
         return work
 
     def luck_decision(self, number_of_situation, choice):
-        """
-        Данная функция учитывает влияние некой ситуации на общую удачливость студента.
-        Возвращает True, если студенту повезло, иначе - False.
-        """
+        """ Данная функция учитывает влияние некой ситуации на общую удачливость студента.
+        Возвращает True, если студенту повезло, иначе - False. """
+        if number_of_situation != 2 and number_of_situation != 6:  # рандом
+            return self.is_student_lucky()
         is_it_luck = True
-        if number_of_situation == 1:  # рандом
-            if result_functions.one_half():
-                self.luck += 1
-            else:
-                is_it_luck = False
         if number_of_situation == 2:  # детерминированная удача (1 выбор лучше)
             if choice == 'first':
-                self.luck += 1
-            else:
-                self.luck -= 1
-                is_it_luck = False
-        if number_of_situation == 3:  # рандом
-            if result_functions.one_half():
-                self.luck += 1
-            else:
-                self.luck -= 1
-                is_it_luck = False
-        if number_of_situation == 4:  # рандом
-            if result_functions.one_half():
-                self.luck += 1
-            else:
-                is_it_luck = False
-        if number_of_situation == 5:  # рандом
-            if result_functions.one_half():
                 self.luck += 1
             else:
                 self.luck -= 1
