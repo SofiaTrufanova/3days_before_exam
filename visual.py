@@ -98,9 +98,9 @@ class GameWindow:
         self.first_lucky_button.grid_remove()
         self.second_lucky_button.grid_remove()
         globals.Global.student.prepare_for_exam()
-        ticket_type = result_functions.type_of_something(globals.Global.student.fatigue)
-        exam_type = result_functions.type_of_something(globals.Global.student.fatigue)
-        globals.Global.student.result = result_functions.result(exam_type, ticket_type,
+        globals.Global.ticket_type = result_functions.type_of_something(globals.Global.student.fatigue)
+        globals.Global.exam_type = result_functions.type_of_something(globals.Global.student.fatigue)
+        globals.Global.student.result = result_functions.result(globals.Global.exam_type, globals.Global.ticket_type,
                                                                 globals.Global.student.knowledge)
         self.window.bind("<Button-1>", self.final)
 

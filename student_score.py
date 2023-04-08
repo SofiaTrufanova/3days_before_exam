@@ -4,13 +4,15 @@ import result_functions
 
 class Student:
     """Студент (игрок)"""
-    luck = 0
-    fatigue = {'easy': 0, 'middle': 0, 'hard': 0}
-    knowledge = {'easy': 0, 'middle': 0, 'hard': 0}
-    summary_knowledge = 0
-    overworking = 0
-    count_of_bot = 0
-    result = 0
+
+    def __init__(self):
+        self.luck = 0
+        self.fatigue = {'easy': 0, 'middle': 0, 'hard': 0}
+        self.knowledge = {'easy': 0, 'middle': 0, 'hard': 0}
+        self.summary_knowledge = 0
+        self.overworking = 0
+        self.count_of_bot = 0
+        self.result = 0
 
     def is_student_lucky(self):
         if result_functions.one_half():
