@@ -35,8 +35,8 @@ class GameWindow:
 
     def picture(self):
         globals.Global.number_of_picture += 1
-        bg = PhotoImage(file=globals.Global.path_of_pictures[globals.Global.number_of_picture])
-        self.place.configure(image=bg)
+        self.bg = PhotoImage(file=globals.Global.path_of_pictures[globals.Global.number_of_picture])
+        self.place.configure(image=self.bg)
 
     def ticket(self):
         """Выбор билета"""
