@@ -82,6 +82,7 @@ class GameWindow:
             self.before_ending()
         globals.Global.click_index += 1
         if globals.Global.click_index == globals.Global.NINETEEN:
+            self.picture()
             final_result = max(2, min(globals.Global.student.result, globals.Global.TEN))
             self.label_text.configure(text=globals.Global.result_text[final_result - 2])
             self.main_text.grid_remove()

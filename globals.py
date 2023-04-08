@@ -39,10 +39,21 @@ class Global:
         'pictures/Общага.png',
         'pictures/КСП.png',
         'pictures/Общага.png',
+        'pictures/Общага.png',
+        'pictures/МФТИ.png',
+        'pictures/Боталка.png',
+        'pictures/КСП.png',
+        'pictures/Общага.png',
+        'pictures/МФТИ.png',
+        'pictures/Боталка.png',
+        'pictures/Общага.png',
+        'pictures/Общага.png',
+        'pictures/Боталка.png',
+        'pictures/Халява.png',
+        'pictures/Общага.png',
         'pictures/Экзамен.png',
-        'pictures/Боталка.png'
+        'pictures/Аудиторный корпус.png'
     ]
-
 
     lucky_choices = [
         "- О, сегодня мне повезло, конечно! Вы берёте компот и наслаждаетесь жизнью.",
