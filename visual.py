@@ -1,6 +1,13 @@
 import globals
 import hide_music_imports  # Он прячет вывод при подключении пакета с музыкой
-from pygame import mixer
+
+try:
+    from pygame import mixer
+except ImportError:
+    import os
+
+    os.system('pip install pygame')
+    from pygame import mixer
 import result_functions
 from tkinter import Button, Label, PhotoImage, Tk
 
