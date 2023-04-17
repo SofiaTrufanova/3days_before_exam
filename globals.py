@@ -35,24 +35,24 @@ class Global:
     '''
 
     path_of_pictures = [
-        'pictures/Аудиторный корпус.png',
-        'pictures/Общага.png',
-        'pictures/КСП.png',
-        'pictures/Общага.png',
-        'pictures/Общага.png',
-        'pictures/МФТИ.png',
-        'pictures/Боталка.png',
-        'pictures/КСП.png',
-        'pictures/Общага.png',
-        'pictures/МФТИ.png',
-        'pictures/Боталка.png',
-        'pictures/Общага.png',
-        'pictures/Общага.png',
-        'pictures/Боталка.png',
-        'pictures/Халява.png',
-        'pictures/Общага.png',
-        'pictures/Экзамен.png',
-        'pictures/Аудиторный корпус.png'
+        'pictures/classroom_building.png',
+        'pictures/Dormitory.png',
+        'pictures/SNP.png',
+        'pictures/Dormitory.png',
+        'pictures/Dormitory.png',
+        'pictures/MIPT.png',
+        'pictures/botalka.png',
+        'pictures/SNP.png',
+        'pictures/Dormitory.png',
+        'pictures/MIPT.png',
+        'pictures/botalka.png',
+        'pictures/Dormitory.png',
+        'pictures/Dormitory.png',
+        'pictures/botalka.png',
+        'pictures/freebie.png',
+        'pictures/Dormitory.png',
+        'pictures/exam.png',
+        'pictures/classroom_building.png'
     ]
 
     lucky_choices = [
